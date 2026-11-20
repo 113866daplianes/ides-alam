@@ -28,7 +28,9 @@ const staff=[
  ["School Head","School Head","School Administration","SH"]
 ];
 function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2400)}
-function showPage(page){$$(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+page));$$(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));window.scrollTo({top:0,behavior:"smooth"});if(page==="calendar")renderCalendar();if(page==="directory")renderDirectory();if(page==="announcements")renderAnnouncements();}
+let pageHistory=["home"];
+function showPage(page, fromBack=false){const current=$(".page.active")?.id.replace("page-","")||"home";if(!fromBack&&current!==page){pageHistory.push(current);if(pageHistory.length>20)pageHistory.shift();}$$(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+page));$$(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));$$(".desktop-nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));$("#backButton").classList.toggle("invisible",page==="home");window.scrollTo({top:0,behavior:"smooth"});if(page==="calendar")renderCalendar();if(page==="directory")renderDirectory();if(page==="announcements")renderAnnouncements();}
+function goBack(){if(pageHistory.length>1){const previous=pageHistory.pop();showPage(previous,true)}else{showPage("home",true)}}
 function roleBadge(role){return role==="admin"||role==="head"?"Administrator":role==="teacher"?"Teacher":"Parent"}
 function canInteract(){return currentRole!=="public"}
 function canPublish(){return ["teacher","admin","head"].includes(currentRole)}
@@ -37,7 +39,7 @@ function renderPosts(target, list=posts){
   <div class="post-head"><span class="avatar">${initials(p.author)}</span><div class="post-author"><b>${esc(p.author)}</b><small>${esc(p.meta)}</small></div><span class="role-badge ${p.role==='admin'||p.role==='head'?'admin':''}">${roleBadge(p.role)}</span></div>
   <h3>${esc(p.title)}</h3><div class="post-copy">${esc(p.body)}</div>${p.image?`<div class="post-image ${p.image}">School activity photo · demo placeholder</div>`:""}
   <div class="post-meta"><span>♥ ${p.likes} reactions</span><span>${p.comments.length} comments</span></div>
-  <div class="post-actions"><button class="${p.liked?'liked':''}" data-action="like" data-id="${p.id}">${p.liked?'♥ Liked':'♡ Like'}</button><button data-action="comment" data-id="${p.id}">▢ Comment</button><button data-action="share" data-id="${p.id}">↗ Share</button></div>
+  <div class="post-actions"><button class="like-button ${p.liked?'liked':''}" data-action="like" data-id="${p.id}"><span class="heart-symbol">♥</span> Like</button><button data-action="comment" data-id="${p.id}">▢ Comment</button><button data-action="share" data-id="${p.id}">↗ Share</button></div>
   <div class="comment-list">${p.comments.map(c=>`<div class="comment"><b>${esc(c[0])}</b>${esc(c[1])}</div>`).join("")}</div>
   ${canInteract()?`<form class="comment-form" data-id="${p.id}"><input required maxlength="300" placeholder="Write a comment…"><button>Send</button></form>`:`<div class="comment-form"><input disabled placeholder="Log in to like or comment"><button type="button" data-action="login">Log in</button></div>`}
  </article>`).join("");
@@ -70,6 +72,7 @@ document.addEventListener("submit",e=>{
  if(e.target.id==="newPostForm"){e.preventDefault();const p={id:Date.now(),author:accounts[currentRole].name,role:currentRole,meta:accounts[currentRole].role+" · Just now",category:$("#newCategory").value,title:$("#newTitle").value,body:$("#newBody").value,image:"",likes:0,comments:[]};posts.unshift(p);renderPosts($("#feedList"));renderAnnouncements();closeModal();showPage("home");toast("Demo post published.");}
  if(e.target.id==="supportForm"){e.preventDefault();const vals=[...e.target.querySelectorAll("input,select,textarea")].map(x=>x.value);const body=encodeURIComponent(vals[3]+"\n\nFrom: "+vals[0]+"\nTopic: "+vals[1]);location.href="mailto:school.office@example.com?subject="+encodeURIComponent(vals[2])+"&body="+body;toast("Opening your email application.");}
 });
+$("#backButton").onclick=goBack;
 $("#modalClose").onclick=closeModal;$("#modalBackdrop").addEventListener("click",e=>{if(e.target.id==="modalBackdrop")closeModal()});
 $("#switchAccount").onclick=accountModal;$("#topAvatar").onclick=()=>showPage("profile");$("#composerPrompt").onclick=composerModal;$("#editProfile").onclick=()=>toast("Profile editing is a future feature.");$("#privacyInfo").onclick=()=>openModal("Privacy & safety","<p>ALAM is designed to avoid a public student directory and to keep learner identifiers and attendance records private. This prototype uses mock data only.</p>");
 $("#searchToggle").onclick=()=>$("#searchStrip").classList.toggle("hidden");$("#searchClose").onclick=()=>$("#searchStrip").classList.add("hidden");$("#searchInput").oninput=e=>{let q=e.target.value.toLowerCase();renderPosts($("#feedList"),posts.filter(p=>(p.title+" "+p.body+" "+p.author).toLowerCase().includes(q)));showPage("home")};
@@ -77,3 +80,14 @@ $("#prevMonth").onclick=()=>{currentMonth.setMonth(currentMonth.getMonth()-1);re
 $("#staffSearch").oninput=e=>renderDirectory(e.target.value);
 $$(".filter-chip").forEach(b=>b.onclick=()=>{$$(".filter-chip").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");currentFilter=b.dataset.filter;renderAnnouncements()});
 renderPosts($("#feedList"));renderAnnouncements();renderCalendar();renderDirectory();updateAccount();
+
+
+// Browser-side deterrents for this visual demo only. These do NOT secure a production backend.
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", e => {
+  const k=e.key.toLowerCase();
+  if(e.key==="F12" || (e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(k)) ||
+     (e.ctrlKey&&["u","s"].includes(k))) {
+    e.preventDefault(); e.stopPropagation(); toast("This action is disabled in the demo.");
+  }
+});

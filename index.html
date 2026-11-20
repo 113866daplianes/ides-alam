@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1769aa">
   <title>iDES – ALAM | Daplian Elementary School</title>
+  <link rel="icon" type="image/png" href="assets/ides-app-icon.png">
+  <link rel="apple-touch-icon" href="assets/ides-app-icon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
+      <button class="back-button" id="backButton" aria-label="Go back" title="Go back">‹ <span>Back</span></button>
       <button class="brand" data-page="home" aria-label="Go to home">
-        <span class="brand-mark">A</span>
+        <img class="brand-mark" src="assets/ides-app-icon.png" alt="iDES ALAM app icon">
         <span class="brand-copy"><strong>iDES <b>ALAM</b></strong><small>Daplian Elementary School</small></span>
       </button>
       <div class="top-actions">
@@ -25,7 +28,26 @@
       <button class="btn btn-quiet" id="searchClose">Close</button>
     </div>
 
-    <main class="main-content">
+    <div class="desktop-layout">
+      <aside class="desktop-sidebar">
+        <div class="school-identity">
+          <img src="assets/daplian-school-seal.png" alt="Daplian Elementary School seal">
+          <div><b>Daplian Elementary School</b><small>San Fernando, Masbate</small></div>
+        </div>
+        <div class="desktop-nav-title">ALAM NAVIGATION</div>
+        <button class="desktop-nav-item active" data-page="home"><span>🏠</span> Home</button>
+        <button class="desktop-nav-item" data-page="calendar"><span>🗓️</span> Calendar</button>
+        <button class="desktop-nav-item" data-page="announcements"><span>📢</span> Announcements</button>
+        <button class="desktop-nav-item" data-page="profile"><span>🧑🏼</span> My Profile</button>
+        <div class="desktop-nav-title">SCHOOL SERVICES</div>
+        <button class="desktop-nav-item" data-page="attendance"><span>📋</span> Attendance</button>
+        <button class="desktop-nav-item" data-page="directory"><span>👥</span> School Directory</button>
+        <button class="desktop-nav-item" data-page="gallery"><span>🖼️</span> School Gallery</button>
+        <button class="desktop-nav-item" data-page="map"><span>🗺️</span> School Map</button>
+        <button class="desktop-nav-item" data-page="support"><span>✉️</span> Email Support</button>
+        <div class="sidebar-note"><b>Welcome to ALAM!</b><small>Your school community, connected.</small></div>
+      </aside>
+      <main class="main-content">
       <section class="page active" id="page-home">
         <div class="welcome-banner">
           <div>
@@ -33,7 +55,7 @@
             <h1>Your school community,<br><em>all in one place.</em></h1>
             <p>Stay connected with school news, activities, and announcements.</p>
           </div>
-          <div class="banner-orbit"><span>ALAM</span><i>✦</i></div>
+          <div class="banner-brand-art"><img src="assets/daplian-school-seal.png" alt="Daplian Elementary School seal"><span>ALAM</span></div>
         </div>
         <div class="quick-links">
           <button class="quick-card" data-page="calendar"><span class="quick-icon blue">▦</span><b>School calendar</b><small>See what's coming up</small></button>
@@ -155,13 +177,14 @@
         </div>
         <div class="card privacy-card"><span class="privacy-icon">♧</span><div><b>Privacy comes first.</b><p>ALAM does not provide a public student directory. Learner information and attendance must remain accessible only to authorized users.</p></div></div>
       </section>
-    </main>
+      </main>
+    </div>
 
     <nav class="bottom-nav" aria-label="Main navigation">
-      <button class="nav-item active" data-page="home"><span>⌂</span><small>Home</small></button>
-      <button class="nav-item" data-page="calendar"><span>▦</span><small>Calendar</small></button>
-      <button class="nav-item" data-page="announcements"><span>◉</span><small>Announcements</small></button>
-      <button class="nav-item" data-page="profile"><span>♙</span><small>My Profile</small></button>
+      <button class="nav-item active" data-page="home"><span>🏠</span><small>Home</small></button>
+      <button class="nav-item" data-page="calendar"><span>🗓️</span><small>Calendar</small></button>
+      <button class="nav-item" data-page="announcements"><span>📢</span><small>Announcements</small></button>
+      <button class="nav-item" data-page="profile"><span>🧑🏼</span><small>My Profile</small></button>
       <button class="nav-item" data-page="menu"><span>☰</span><small>Menu</small></button>
     </nav>
   </div>
