@@ -1,58 +1,59 @@
-# iDES – ALAM HTML Prototype
+# iDES – ALAM PWA Prototype
 
-A mobile-first, Facebook-inspired front-end prototype for Daplian Elementary School.
+A responsive, installable Progressive Web App prototype for Daplian Elementary School.
 
-## Run it
-1. Extract the ZIP file.
-2. Open `index.html` in a modern browser.
-3. No build tools or server are required for the basic demo.
+## Run locally
+A service worker requires HTTPS or localhost. Do not open `index.html` directly with `file://` if you want offline/PWA installation.
 
-## Branding and visual direction
-- `assets/ides-app-icon.png` is the supplied app icon and browser favicon.
-- `assets/daplian-school-seal.png` is the supplied Daplian Elementary School seal.
-- Light Green Aero styling with glossy gradients, beveled borders, richer controls, and Windows 7-inspired visual treatments.
-- Responsive mobile bottom navigation and desktop left navigation.
-- Subtle Back control and green heart reaction (white fill with green outline when unliked; solid green when liked).
+### Option A — Python local server
+1. Extract the ZIP.
+2. Open a terminal in the `iDES-ALAM-Prototype` folder.
+3. Run:
+   ```bash
+   python -m http.server 8080
+   ```
+4. Visit `http://localhost:8080`.
 
-## Included
-- Mobile-first Facebook-inspired feed and fixed five-item bottom navigation.
-- Home, Calendar, Announcements, My Profile, and Side Menu.
-- Side-menu destinations: attendance demo, school directory, gallery, interactive campus map, and email support.
-- Mock parent, teacher, School Head, AO, and public visitor accounts.
-- Role-based front-end previews:
-  - Public: read-only.
-  - Parent: like and comment.
-  - Teacher: create posts, like and comment.
-  - School Head and AO: previewed as school personnel in this prototype.
-- Placeholder posts, comments, school activities, staff directory entries, and attendance records.
+### Option B — GitHub Pages
+Upload the contents of this folder to a GitHub repository and enable GitHub Pages. HTTPS is provided by GitHub Pages, allowing service-worker registration and PWA installation.
 
-## Demo account switching
-Open **My Profile → Switch demo account** to switch between:
+## Included PWA features
+- Web app manifest with 192px and 512px icons.
+- Service worker and app-shell offline cache.
+- Install prompt when the browser supports `beforeinstallprompt`.
+- Responsive mobile and desktop layouts.
+- Mobile fixed bottom navigation and desktop sidebar.
+- Green Aero / Windows 7-inspired visual design.
+- Custom branded pop-up selection dialogs; no native HTML dropdown menus are used for the learner, support topic, or post category selectors.
+- Back navigation.
+- Green heart Like button: white fill with green outline when not liked; solid green when liked.
+
+## Supplied school assets
+- `assets/ides-app-icon.png`: official iDES app icon and favicon.
+- `assets/daplian-school-seal.png`: Daplian Elementary School seal.
+- `assets/school-front-post.jpg`: supplied school-front photo used as the regular feed photo placeholder.
+- `assets/school-head-emergency-batteries.jpg`: supplied photo for the School Head's emergency-battery article.
+- `assets/principal-rosauro-caparino.png`: supplied profile photo for Rosauro B. Capariño Jr., Principal I.
+
+## Featured sample post
+**DES Procures Emergency Batteries for Power Shortage**
+
+A short school update by Rosauro B. Capariño Jr., Principal I, ending with `#DESdaBest`.
+
+## Mock accounts
+Use My Profile → Switch demo account:
 - Parent: Juan Dela Cruz
-- Teacher: Maria G. Santisima – Grade 4 Adviser
-- School Head
-- AO: Ronell Nicolas – Administrative Officer / System Admin
+- Teacher: Maria G. Santisima — Grade 4 Adviser
+- School Head: Rosauro B. Capariño Jr. — Principal I
+- AO: Ronell Nicolas — Administrative Officer / System Admin
 - Public Visitor
 
-## Important prototype limitations
-This is a static front-end prototype. It does **not** include:
-- Real registration, login, password storage, or account approval.
-- Google Sheets or Apps Script backend.
-- iAttend integration.
-- Facebook Graph API / ALAM Sync Bot.
-- Real post, comment, like, or media persistence.
-- Real administrator authorization or moderation.
-- Verified campus map locations.
-- Production email delivery.
+## Prototype limitations
+This is a front-end demonstration only. It does not include production authentication, account approval, password recovery, real moderation, Google Apps Script/Sheets backend, iAttend integration, or Facebook Page synchronization. Likes, comments, and posts are temporary browser-session data.
 
-The mock interactions are local to the browser session. The Email Support form opens the user's email application using a placeholder address (`school.office@example.com`); replace it before any demonstration that sends email.
+The email support address remains a placeholder: `school.office@example.com`. Replace it with the verified school office address before deployment to real users.
 
-## Privacy and production notes
-- Do not load real learner names, LRNs, attendance, or other confidential information into this prototype.
-- No public student directory is included.
-- Use authorized school-approved staff information and properly reviewed photographs only.
-- Production authentication and APIs must enforce permissions server-side. Hiding controls in the browser is not security.
-- The attendance page is mock data and is not connected to iAttend.
+The campus map, staff records, calendar entries, and attendance records are illustrative mock data. Confirm all real-world details before publication.
 
-## Browser restrictions
-The demo suppresses the right-click context menu and common developer-tools/view-source shortcuts as a casual deterrent. These browser-side restrictions are easily bypassed and are NOT a security boundary. They cannot prevent inspection of client-side code. No backend credentials or private API keys are included in this prototype. Production security must be enforced by authenticated server-side APIs and access controls.
+## Security
+The prototype disables the browser context menu and common developer-tool shortcuts as a casual deterrent. This is not security and can be bypassed. Never put API keys, credentials, private spreadsheet IDs, or sensitive learner information in frontend files. Production access control and data protection must be enforced by authenticated server-side APIs.

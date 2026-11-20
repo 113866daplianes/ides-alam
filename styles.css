@@ -83,3 +83,33 @@ body{background:linear-gradient(180deg,#f8fff5 0%,#e2f2df 100%);color:#183d20}
 .back-button.invisible{visibility:hidden}
 .like-button .heart-symbol{display:inline-block;font-size:17px;line-height:1;vertical-align:-1px;color:#fff;-webkit-text-stroke:1.7px #078d24;text-shadow:0 1px 0 #fff;margin-right:3px}
 .like-button.liked .heart-symbol{color:#08a52a;-webkit-text-stroke:1px #078d24;text-shadow:0 1px 0 #d9f5d5}
+
+
+/* Real school photography and branded selection dialogs */
+.post-photo{display:block;width:100%;max-height:440px;object-fit:cover;object-position:center;border-radius:13px;margin-top:13px;border:1px solid #b8d8b1;box-shadow:0 3px 9px #235b2922}
+.post:has(.post-photo[src*="emergency-batteries"]) .post-photo{object-fit:contain;background:linear-gradient(#f8fff5,#e6f3e1);max-height:500px}
+.principal-avatar{object-fit:cover;object-position:center 22%;border:2px solid #a8d99e;box-shadow:0 1px 4px #225c2b40}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+#topAvatar{overflow:hidden;padding:0}
+.picker-trigger{width:100%;display:flex;align-items:center;gap:11px;padding:12px 13px;border:1px solid #9dcc95;border-radius:12px;background:linear-gradient(180deg,#ffffff 0%,#e3f5df 52%,#d0edc9 100%);box-shadow:inset 0 1px 0 #fff,0 2px 5px #2a6c3024;color:#245e2c;text-align:left;cursor:pointer;font:600 12px 'DM Sans'}
+.picker-trigger:hover{border-color:#62b75c;filter:brightness(1.015)}
+.picker-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:linear-gradient(#fff,#d5efcf);border:1px solid #b3d9aa;font-size:18px;box-shadow:inset 0 1px #fff}
+.picker-value{flex:1}
+.picker-chevron{font-size:20px;color:#267833;text-shadow:0 1px #fff}
+.form-picker{margin-top:0}
+.picker-backdrop{position:fixed;inset:0;z-index:80;background:rgba(10,40,16,.48);display:grid;place-items:center;padding:18px;backdrop-filter:blur(3px)}
+.picker-dialog{width:min(100%,460px);max-height:min(82vh,690px);overflow:auto;border:1px solid #80bd76;border-radius:19px;padding:18px;background:linear-gradient(180deg,#fbfff9 0%,#e6f7e1 100%);box-shadow:0 18px 55px #0c341c66,inset 0 1px #fff}
+.picker-dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.picker-dialog-head h2{font:800 20px Manrope;color:#145b22;margin:4px 0 0}
+.picker-close{width:35px;height:35px;border:1px solid #a6cfa0;border-radius:9px;background:linear-gradient(#fff,#d9efd4);color:#286b30;font-weight:800;cursor:pointer;box-shadow:inset 0 1px #fff}
+.picker-subtitle{font-size:11px;color:#617d64;line-height:1.5;margin:8px 0 14px}
+.picker-options{display:grid;gap:9px}
+.picker-option{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;border:1px solid #b1d8a9;border-radius:12px;background:linear-gradient(180deg,#fff 0%,#edf9e9 100%);box-shadow:inset 0 1px #fff,0 2px 4px #2d6c3020;text-align:left;cursor:pointer;color:#1c5726}
+.picker-option:hover{border-color:#64b75d;background:linear-gradient(#fff,#dff5d9);transform:translateY(-1px)}
+.picker-option-icon{width:40px;height:40px;display:grid;place-items:center;border:1px solid #b2dba9;border-radius:10px;background:linear-gradient(#fff,#d7f0d0);font-size:20px}
+.picker-option-copy{display:grid;gap:3px;flex:1}
+.picker-option-copy b{font:700 12px Manrope}
+.picker-option-copy small{font-size:10px;color:#67816a}
+.picker-option-arrow{font-size:22px;color:#3b8b43}
+.install-button{border:1px solid #8dc786;border-radius:9px;padding:7px 10px;background:linear-gradient(#fff,#d9f2d4);color:#176a26;font-weight:700;font-size:10px;box-shadow:inset 0 1px #fff;cursor:pointer}
+@media(max-width:520px){.picker-dialog{padding:15px;border-radius:16px}.picker-dialog-head h2{font-size:18px}.post-photo{max-height:330px}}

@@ -1,0 +1,32 @@
+{
+  "id": "/",
+  "name": "iDES \u2013 ALAM | Daplian Elementary School",
+  "short_name": "iDES ALAM",
+  "description": "The digital school community of Daplian Elementary School.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#e8f5e6",
+  "theme_color": "#078b24",
+  "icons": [
+    {
+      "src": "assets/ides-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/ides-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/ides-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

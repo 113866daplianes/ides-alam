@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1769aa">
+  <meta name="theme-color" content="#078b24">
+  <meta name="description" content="iDES ALAM — Daplian Elementary School community website and PWA.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.webmanifest">
   <title>iDES – ALAM | Daplian Elementary School</title>
   <link rel="icon" type="image/png" href="assets/ides-app-icon.png">
   <link rel="apple-touch-icon" href="assets/ides-app-icon.png">
@@ -19,6 +24,7 @@
       </button>
       <div class="top-actions">
         <button class="icon-button" id="searchToggle" aria-label="Search">⌕</button>
+        <button class="install-button hidden" id="installPwa" aria-label="Install ALAM">⬇ Install</button>
         <button class="avatar avatar-small" id="topAvatar" aria-label="Open profile">JD</button>
       </div>
     </header>
@@ -119,7 +125,7 @@
 
       <section class="page" id="page-attendance">
         <div class="page-heading"><span class="eyebrow">CONNECTED SERVICE · DEMO ONLY</span><h1>Monitor my kid's attendance</h1><p>Illustrative attendance view. This prototype is not connected to iAttend.</p></div>
-        <div class="child-switch card"><label for="childSelect">Select learner</label><select id="childSelect"><option>Maria Dela Cruz · Grade 4</option><option>Pedro Dela Cruz · Grade 1</option></select></div>
+        <div class="child-switch card"><label>Choose a connected learner</label><button type="button" class="picker-trigger" id="childPicker" data-picker="child"><span class="picker-icon">🎒</span><span class="picker-value" id="childPickerValue">Maria Dela Cruz · Grade 4</span><span class="picker-chevron">⌄</span></button></div>
         <div class="attendance-summary"><div class="summary-box"><b>18</b><small>Present</small></div><div class="summary-box"><b>1</b><small>Late</small></div><div class="summary-box"><b>1</b><small>Absent</small></div></div>
         <div class="card attendance-table"><div class="table-title">November 2026</div><div class="attendance-row"><span>Nov 19 · Thursday</span><b class="status present">Present</b></div><div class="attendance-row"><span>Nov 18 · Wednesday</span><b class="status late">Late</b></div><div class="attendance-row"><span>Nov 17 · Tuesday</span><b class="status present">Present</b></div><div class="attendance-row"><span>Nov 16 · Monday</span><b class="status absent">Absent</b></div></div>
       </section>
@@ -158,7 +164,7 @@
         <div class="page-heading"><span class="eyebrow">WE'RE HERE TO HELP</span><h1>Email Support</h1><p>Send a message to the school office or ALAM administrators.</p></div>
         <form class="card support-form" id="supportForm">
           <label>Your name<input class="field" required placeholder="Enter your name"></label>
-          <label>Topic<select class="field"><option>General inquiry</option><option>Account assistance</option><option>School activity</option><option>Website issue</option><option>Other</option></select></label>
+          <label>Topic<button type="button" class="picker-trigger form-picker" id="supportTopicPicker" data-picker="supportTopic"><span class="picker-icon">✉️</span><span class="picker-value" id="supportTopicValue">General inquiry</span><span class="picker-chevron">⌄</span></button><input type="hidden" id="supportTopic" value="General inquiry"></label>
           <label>Subject<input class="field" required placeholder="What is this about?"></label>
           <label>Message<textarea class="field" required rows="5" placeholder="Write your message…"></textarea></label>
           <button class="btn btn-primary full" type="submit">Prepare email to school office</button>
@@ -193,6 +199,13 @@
     <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-head"><h2 id="modalTitle">ALAM</h2><button class="icon-button" id="modalClose">×</button></div>
       <div id="modalBody"></div>
+    </div>
+  </div>
+  <div class="picker-backdrop hidden" id="pickerBackdrop">
+    <div class="picker-dialog" role="dialog" aria-modal="true" aria-labelledby="pickerTitle">
+      <div class="picker-dialog-head"><div><span class="eyebrow">iDES · ALAM</span><h2 id="pickerTitle">Choose an option</h2></div><button class="picker-close" id="pickerClose" aria-label="Close">✕</button></div>
+      <p class="picker-subtitle" id="pickerSubtitle">Select one of the available options.</p>
+      <div class="picker-options" id="pickerOptions"></div>
     </div>
   </div>
   <div class="toast" id="toast"></div>
