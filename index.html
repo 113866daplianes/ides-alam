@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1769aa">
+  <title>iDES – ALAM | Daplian Elementary School</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" data-page="home" aria-label="Go to home">
+        <span class="brand-mark">A</span>
+        <span class="brand-copy"><strong>iDES <b>ALAM</b></strong><small>Daplian Elementary School</small></span>
+      </button>
+      <div class="top-actions">
+        <button class="icon-button" id="searchToggle" aria-label="Search">⌕</button>
+        <button class="avatar avatar-small" id="topAvatar" aria-label="Open profile">JD</button>
+      </div>
+    </header>
+
+    <div class="search-strip hidden" id="searchStrip">
+      <input id="searchInput" type="search" placeholder="Search posts, announcements, people…">
+      <button class="btn btn-quiet" id="searchClose">Close</button>
+    </div>
+
+    <main class="main-content">
+      <section class="page active" id="page-home">
+        <div class="welcome-banner">
+          <div>
+            <span class="eyebrow">DAPLIAN ELEMENTARY SCHOOL</span>
+            <h1>Your school community,<br><em>all in one place.</em></h1>
+            <p>Stay connected with school news, activities, and announcements.</p>
+          </div>
+          <div class="banner-orbit"><span>ALAM</span><i>✦</i></div>
+        </div>
+        <div class="quick-links">
+          <button class="quick-card" data-page="calendar"><span class="quick-icon blue">▦</span><b>School calendar</b><small>See what's coming up</small></button>
+          <button class="quick-card" data-page="announcements"><span class="quick-icon gold">◉</span><b>Announcements</b><small>Official school updates</small></button>
+          <button class="quick-card" data-page="directory"><span class="quick-icon green">♧</span><b>Staff directory</b><small>Meet our personnel</small></button>
+        </div>
+
+        <div class="section-heading">
+          <div><span class="eyebrow">THE SCHOOL COMMUNITY</span><h2>Latest from ALAM</h2></div>
+          <button class="text-button" data-page="announcements">View announcements →</button>
+        </div>
+        <div class="composer card" id="composer">
+          <div class="composer-top">
+            <span class="avatar" id="composerAvatar">JD</span>
+            <button class="composer-prompt" id="composerPrompt">Share an update with the school community…</button>
+          </div>
+          <div class="composer-actions">
+            <span>▧ <small>Photo</small></span><span>▤ <small>Announcement</small></span>
+            <span class="role-hint" id="composerHint">Parent accounts can interact with posts</span>
+          </div>
+        </div>
+        <div class="feed" id="feedList"></div>
+      </section>
+
+      <section class="page" id="page-calendar">
+        <div class="page-heading"><span class="eyebrow">PLAN AHEAD</span><h1>School Calendar</h1><p>Keep up with activities and important dates at Daplian Elementary School.</p></div>
+        <div class="calendar-toolbar card">
+          <button class="icon-button" id="prevMonth">‹</button><strong id="monthLabel">November 2026</strong><button class="icon-button" id="nextMonth">›</button>
+        </div>
+        <div class="calendar card">
+          <div class="calendar-grid weekday"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+          <div class="calendar-legend"><span><i class="dot blue-dot"></i> School activity</span><span><i class="dot gold-dot"></i> Important date</span></div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">WHAT'S NEXT</span><h2>Upcoming activities</h2></div></div>
+        <div id="eventList" class="event-list"></div>
+      </section>
+
+      <section class="page" id="page-announcements">
+        <div class="page-heading"><span class="eyebrow">OFFICIAL UPDATES</span><h1>Announcements</h1><p>Important notices and advisories from the school.</p></div>
+        <div class="filter-row">
+          <button class="filter-chip selected" data-filter="All">All</button><button class="filter-chip" data-filter="Advisory">Advisories</button><button class="filter-chip" data-filter="Event">Events</button><button class="filter-chip" data-filter="Reminder">Reminders</button>
+        </div>
+        <div id="announcementList" class="feed"></div>
+      </section>
+
+      <section class="page" id="page-profile">
+        <div class="profile-cover"></div>
+        <div class="profile-card card">
+          <div class="profile-main"><span class="avatar avatar-large" id="profileAvatar">JD</span><div><h2 id="profileName">Juan Dela Cruz</h2><p id="profileRole">Parent account · Demo</p></div></div>
+          <div class="profile-stats"><div><b id="profileChildren">2</b><small>Connected learners</small></div><div><b>Demo</b><small>Prototype account</small></div></div>
+          <button class="btn btn-outline full" id="editProfile">Edit profile</button>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">YOUR ALAM</span><h2>Account & access</h2></div></div>
+        <div class="settings-list card">
+          <button data-page="attendance"><span class="setting-icon">▦</span><span><b>My connected learners</b><small>Manage linked learner demo records</small></span><span>›</span></button>
+          <button id="switchAccount"><span class="setting-icon">⇄</span><span><b>Switch demo account</b><small>Preview parent, teacher, admin, and public views</small></span><span>›</span></button>
+          <button id="privacyInfo"><span class="setting-icon">♧</span><span><b>Privacy & safety</b><small>Learn how ALAM protects information</small></span><span>›</span></button>
+        </div>
+      </section>
+
+      <section class="page" id="page-attendance">
+        <div class="page-heading"><span class="eyebrow">CONNECTED SERVICE · DEMO ONLY</span><h1>Monitor my kid's attendance</h1><p>Illustrative attendance view. This prototype is not connected to iAttend.</p></div>
+        <div class="child-switch card"><label for="childSelect">Select learner</label><select id="childSelect"><option>Maria Dela Cruz · Grade 4</option><option>Pedro Dela Cruz · Grade 1</option></select></div>
+        <div class="attendance-summary"><div class="summary-box"><b>18</b><small>Present</small></div><div class="summary-box"><b>1</b><small>Late</small></div><div class="summary-box"><b>1</b><small>Absent</small></div></div>
+        <div class="card attendance-table"><div class="table-title">November 2026</div><div class="attendance-row"><span>Nov 19 · Thursday</span><b class="status present">Present</b></div><div class="attendance-row"><span>Nov 18 · Wednesday</span><b class="status late">Late</b></div><div class="attendance-row"><span>Nov 17 · Tuesday</span><b class="status present">Present</b></div><div class="attendance-row"><span>Nov 16 · Monday</span><b class="status absent">Absent</b></div></div>
+      </section>
+
+      <section class="page" id="page-directory">
+        <div class="page-heading"><span class="eyebrow">PEOPLE OF DAPLIAN ES</span><h1>School Directory</h1><p>Meet our school personnel. Only approved professional information is displayed.</p></div>
+        <input class="field search-field" id="staffSearch" placeholder="Search staff name or role…">
+        <div class="directory-list" id="directoryList"></div>
+      </section>
+
+      <section class="page" id="page-gallery">
+        <div class="page-heading"><span class="eyebrow">MOMENTS THAT MATTER</span><h1>School Gallery</h1><p>Highlights from school activities and community events.</p></div>
+        <div class="gallery-grid">
+          <div class="gallery-tile tile-one"><span>School Activities</span></div><div class="gallery-tile tile-two"><span>Learning Together</span></div><div class="gallery-tile tile-three"><span>Celebrations</span></div><div class="gallery-tile tile-four"><span>School Community</span></div>
+        </div>
+        <p class="notice">Demo gallery artwork only. Real photos must be reviewed and authorized before publication.</p>
+      </section>
+
+      <section class="page" id="page-map">
+        <div class="page-heading"><span class="eyebrow">FIND YOUR WAY</span><h1>Interactive School Map</h1><p>Explore key areas around the Daplian Elementary School campus.</p></div>
+        <div class="map-card card">
+          <div class="campus-map">
+            <div class="map-road road-h"></div><div class="map-road road-v"></div>
+            <button class="map-pin office" data-place="School Office">●<small>Office</small></button>
+            <button class="map-pin rooms" data-place="Classroom Building">●<small>Classrooms</small></button>
+            <button class="map-pin court" data-place="Covered Court">●<small>Court</small></button>
+            <button class="map-pin library" data-place="Library">●<small>Library</small></button>
+            <span class="map-label">DAPLIAN ELEMENTARY SCHOOL</span>
+          </div>
+          <div class="map-description" id="mapDescription">Select a location on the map to see details.</div>
+        </div>
+        <p class="notice">Illustrative campus map. Locations and layout must be verified before launch.</p>
+      </section>
+
+      <section class="page" id="page-support">
+        <div class="page-heading"><span class="eyebrow">WE'RE HERE TO HELP</span><h1>Email Support</h1><p>Send a message to the school office or ALAM administrators.</p></div>
+        <form class="card support-form" id="supportForm">
+          <label>Your name<input class="field" required placeholder="Enter your name"></label>
+          <label>Topic<select class="field"><option>General inquiry</option><option>Account assistance</option><option>School activity</option><option>Website issue</option><option>Other</option></select></label>
+          <label>Subject<input class="field" required placeholder="What is this about?"></label>
+          <label>Message<textarea class="field" required rows="5" placeholder="Write your message…"></textarea></label>
+          <button class="btn btn-primary full" type="submit">Prepare email to school office</button>
+          <small class="muted">Prototype only: this opens your email application. A secure backend mail service will be configured for production.</small>
+        </form>
+      </section>
+
+      <section class="page" id="page-menu">
+        <div class="page-heading"><span class="eyebrow">EXPLORE ALAM</span><h1>More from our school</h1><p>School services and helpful links.</p></div>
+        <div class="menu-grid">
+          <button class="menu-tile" data-page="attendance"><span>▦</span><b>Monitor My Kid's Attendance</b><small>iAttend connection</small></button>
+          <button class="menu-tile" data-page="directory"><span>♧</span><b>School Directory</b><small>Our school personnel</small></button>
+          <button class="menu-tile" data-page="gallery"><span>▧</span><b>School Gallery</b><small>Photos and highlights</small></button>
+          <button class="menu-tile" data-page="map"><span>⌖</span><b>Interactive School Map</b><small>Explore the campus</small></button>
+          <button class="menu-tile" data-page="support"><span>✉</span><b>Email Support</b><small>Contact the school</small></button>
+        </div>
+        <div class="card privacy-card"><span class="privacy-icon">♧</span><div><b>Privacy comes first.</b><p>ALAM does not provide a public student directory. Learner information and attendance must remain accessible only to authorized users.</p></div></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-page="home"><span>⌂</span><small>Home</small></button>
+      <button class="nav-item" data-page="calendar"><span>▦</span><small>Calendar</small></button>
+      <button class="nav-item" data-page="announcements"><span>◉</span><small>Announcements</small></button>
+      <button class="nav-item" data-page="profile"><span>♙</span><small>My Profile</small></button>
+      <button class="nav-item" data-page="menu"><span>☰</span><small>Menu</small></button>
+    </nav>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head"><h2 id="modalTitle">ALAM</h2><button class="icon-button" id="modalClose">×</button></div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
